@@ -1,2 +1,2 @@
 # sml-project
-World Co2 Emissions Analysis
+Implementation of World CO2 Emissions Analysis using Flask
