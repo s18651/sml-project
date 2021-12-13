@@ -1,0 +1,39 @@
+Wszyscy:
+	Sprawdzenie danych
+	Znalezienie seta pod kontynenty
+	Join setów
+	Oczyszczanie danych
+	Ogarnięcie modeli
+	Implementacja we Flasku MVP
+	Implementacja we Flasku kolejnych funkcjonalności
+
+
+
+1. Wymagania - co chcemy osiągnąć
+2. Wybranie funkcjonalności
+3. Ogarnięcie Flaska
+
+
+F1: Przewidywanie zanieczyszczenia w podanym roku per kraj i per region + per date range
+F2: Wyświetlenie wykresu regresji liniowej (uwaga: niekoniecznie liniowa)
+
+F3: (do przemyślenia) Kiedy w danym kraju poziom emisji przekroczy dopuszczalny % do życia
+
+https://www.kaggle.com/manchunhui/world-co2-emissions-analysis/notebook
+
+
+Możliwość dorzucenia seta z temperaturami
+https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data
+
+Dodanie użytkownikowi danych własnej analizy danych np na wykresie
+
+
+
+1. Template Flaska	-	apka
+2. Stworzenie modelu	- 	jupyterro
+
+
+
+
+
+https://betterprogramming.pub/deploy-interactive-real-time-data-visualizations-on-flask-with-bokeh-311239273838
