@@ -37,3 +37,8 @@ Dodanie użytkownikowi danych własnej analizy danych np na wykresie
 
 
 https://betterprogramming.pub/deploy-interactive-real-time-data-visualizations-on-flask-with-bokeh-311239273838
+
+
+Polska -> regresja liniowa
+Kontynenty -> Agregacja krajów w kontynenty wraz z sumowaniem ich wartości na rok
+Wszystkie kraje -> zmiana danych kategorycznych na intigery
