@@ -28,19 +28,20 @@ df_data_countries = pd.read_csv(data_file_countries)
 
 #print(df_data_countries['Region'].value_counts())
 
-df_data_countries['Region'] = df_data_countries['Region'].map(regions_mapping)
+df_data_countries['Region Index'] = df_data_countries['Region'].map(regions_mapping)
 
 #print(df_data_countries.sample(1))
 #print(df_data_countries['Region'].value_counts())
 
-useful_columns = ['Country Code', 'Short Name', 'Region']
+useful_columns = ['Country Code', 'Short Name', 'Region', 'Region Index']
 df_data_countries_cleaned = df_data_countries[useful_columns]
 
 #print(df_data_countries_cleaned[df_data_countries_cleaned.isna().any(axis=1)])
 df_data_countries_cleaned = df_data_countries_cleaned[df_data_countries_cleaned['Region'].notna()]
+df_data_countries_cleaned = df_data_countries_cleaned[df_data_countries_cleaned['Region Index'].notna()]
 #print('After dropping values')
 #print(df_data_countries_cleaned[df_data_countries_cleaned.isna().any(axis=1)])
-df_data_countries_cleaned['Region'] = df_data_countries_cleaned['Region'].astype(int)
+df_data_countries_cleaned['Region Index'] = df_data_countries_cleaned['Region Index'].astype(int)
 
 df_co2 = df_data[df_data['Indicator Code'] == co2_indicator]
 print('Shape of df_co2 is {} and countries {}'.format(df_co2.shape, df_data_countries_cleaned.shape))
@@ -61,7 +62,8 @@ df_merged.dropna(axis=1, how='all', inplace=True)
 # drop rows where most (at least 5) of the columns are not empty
 df_merged.dropna(thresh=5, inplace=True)
 # to discuss if we need to replace countries codes/names into 0, 1, 2, 3 etc.
-# currently I have left Country Name to be able to do human-readible DF - this collumn has to be removed before training
+# currently I have left Country Name and Region to be able to do human-readible DF
+# these columns have to be removed before training
 
 le = LabelEncoder()
 encoded_country = le.fit_transform(df_merged['Country Name'])
