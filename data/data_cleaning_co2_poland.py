@@ -4,7 +4,7 @@ import os
 pd.options.mode.chained_assignment = None  # default='warn'
 
 data_file = os.path.join(os.path.join('raw', 'WDI_csv'), 'WDIData.csv')
-cleaned_data_file = os.path.join('cleaned', 'df_poland_co2')
+cleaned_data_file = os.path.join('cleaned', 'df_poland_co2.csv')
 co2_indicator = 'EN.ATM.NOXE.KT.CE'
 
 df = pd.read_csv(data_file)
