@@ -24,7 +24,7 @@ const TopPanel: FC = () => {
         const beforeSign = diffValue > 0 ? '+' : '';
 
         return (
-            <ListItem style={{display: 'flex'}}>
+            <ListItem key={index}>
                 <ListItemText primary={Math.round(item.emission)} secondary={item.year} style={{marginRight: 0}}/>
                 <Typography
                     style={{color: diffValue > 0 ? 'red' : 'green'}}
@@ -32,7 +32,7 @@ const TopPanel: FC = () => {
             </ListItem>
         )});
 
-    return <List style={{display: 'flex', flexDirection: 'row'}}>
+    return <List style={{display: 'flex', flexDirection: 'row', padding: 0, height: '10vh'}}>
         {cards}
     </List>
 };
