@@ -14,10 +14,16 @@ const TopPanel: FC<TopPanelProps> = ({data}) => {
 
         return (
             <ListItem key={index}>
-                <ListItemText primary={Math.round(item.emission)} secondary={item.year} style={{marginRight: 0}}/>
-                <Typography
-                    style={{color: diffValue > 0 ? 'red' : 'green'}}
-                >{beforeSign+diffValue}</Typography>
+                <ListItemText
+                    primary={
+                        <>
+                            {Math.round(item.emission)}&nbsp;
+                            <span style={{color: diffValue > 0 ? 'red' : 'green'}}>({beforeSign+diffValue})</span>
+                        </>
+                    }
+                    secondary={item.year}
+                    style={{width: '100%', textAlign: 'center'}}
+                />
             </ListItem>
         )});
 
