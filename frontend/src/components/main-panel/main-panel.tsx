@@ -33,9 +33,8 @@ const MainPanel: FC<MainPanelProps> = ({year, data, prediction, country}) => {
         <div style={{height: '20vh', display: 'flex', alignItems: 'center'}}>
             <Typography variant="h6">
                 W {country} w
-                <span style={{fontWeight: 'bold'}}> {year}</span> z prawdopodobieństwem
-                <span style={{fontWeight: 'bold'}}> {prediction.probability}</span> emisja CO2 wyniesie
-                <span style={{fontWeight: 'bold'}}> {prediction.emission}</span>
+                <span style={{fontWeight: 'bold'}}> {year}</span> emisja CO2 wyniesie
+                <span style={{fontWeight: 'bold'}}> {parseFloat(prediction.emission as unknown as string).toFixed(2)}</span> ton CO2
             </Typography>
         </div>
         <div style={{height: '64vh', width: '70vw'}}>

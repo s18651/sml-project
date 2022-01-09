@@ -3,7 +3,7 @@ import {FC} from "react";
 import TopPanel from "../components/top-panel/top-panel";
 import SidePanel from "../components/side-panel/side-panel";
 import MainPanel from "../components/main-panel/main-panel";
-import {fetchPolandRawData} from "../http/poland";
+import {fetchPolandPredict, fetchPolandRawData} from "../http/poland";
 
 export interface EmissionData {
     year: number,
@@ -12,13 +12,23 @@ export interface EmissionData {
 
 export interface Prediction {
     emission: number,
-    probability: number,
 }
 
 const Poland: FC = () => {
     const [year, setYear] = useState<number|null>(null);
     const [data, setData] = useState<EmissionData[]>([]);
-    const [prediction, setPrediction] = useState<Prediction>({probability: 0.69, emission: 21370});
+    const [prediction, setPrediction] = useState<Prediction>({emission: 21370});
+
+    useEffect(() => {
+        async function fetchData () {
+            const response = await fetchPolandPredict(year!);
+            setPrediction({emission: await response.json()});
+        }
+        
+        if(year) {
+            fetchData();
+        }
+    }, [year])
 
     useEffect(() => {
         async function fetchData () {
