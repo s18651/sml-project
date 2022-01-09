@@ -5,7 +5,7 @@ from poland import PolandRaw
 app = Flask(__name__)
 api = Api(app)
 
-api.add_resource(PolandRaw, '/poland/raw')
+api.add_resource(PolandRaw, '/api/poland/raw')
 
 if __name__ == "__main__":
     app.run(debug=True)
