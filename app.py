@@ -1,9 +1,11 @@
 from flask import Flask
-app = Flask(__name__)
+from flask_restful import Resource, Api
+from poland import PolandRaw
 
-@app.route("/")
-def hello():
-    return "Hello World!"
+app = Flask(__name__)
+api = Api(app)
+
+api.add_resource(PolandRaw, '/api/poland/raw')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
