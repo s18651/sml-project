@@ -5,9 +5,11 @@ import {TextField, Typography} from "@mui/material";
 
 interface SidePanelProps {
     setYear: Function,
+    minYear: number,
+    maxYear: number,
 }
 
-const SidePanel: FC<SidePanelProps> = ({setYear}) => {
+const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear}) => {
     const [date, setDate] = useState<Date|null>(null);
 
     useEffect(() => {
@@ -28,8 +30,8 @@ const SidePanel: FC<SidePanelProps> = ({setYear}) => {
         <DatePicker
           views={['year']}
           label="Rok"
-          minDate={new Date('2022-01-01')}
-          maxDate={new Date('2100-01-01')}
+          minDate={new Date(minYear+'-01-01')}
+          maxDate={new Date(maxYear+'-01-01')}
           value={date}
           onChange={(date) => setDate(date)}
           renderInput={(params) => <TextField {...params} helperText={null} />}
