@@ -1,34 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {FC} from "react";
 import {List, ListItem, ListItemText, Typography} from "@mui/material";
-import {fetchPolandRawData} from "../../http/poland";
+import {EmissionData} from "../../views/poland";
 
-interface EmissionData {
-    year: number,
-    emission: number,
+interface TopPanelProps {
+    data: EmissionData[],
 }
 
-const TopPanel: FC = () => {
-    const [data, setData] = useState<EmissionData[]>([]);
-    useEffect(() => {
-        async function fetchData () {
-            const response = await fetchPolandRawData();
-            setData(await response.json());
-        }
-
-        fetchData();
-    }, [])
-
+const TopPanel: FC<TopPanelProps> = ({data}) => {
     const cards = data.filter((item, index) => index % 4 === 0 ).map((item, index, collection) => {
         const diffValue = collection[index-1] ? Math.round(item.emission - collection[index-1].emission) : 0;
         const beforeSign = diffValue > 0 ? '+' : '';
 
         return (
             <ListItem key={index}>
-                <ListItemText primary={Math.round(item.emission)} secondary={item.year} style={{marginRight: 0}}/>
-                <Typography
-                    style={{color: diffValue > 0 ? 'red' : 'green'}}
-                >{beforeSign+diffValue}</Typography>
+                <ListItemText
+                    primary={
+                        <>
+                            {Math.round(item.emission)}&nbsp;
+                            <span style={{color: diffValue > 0 ? 'red' : 'green'}}>({beforeSign+diffValue})</span>
+                        </>
+                    }
+                    secondary={item.year}
+                    style={{width: '100%', textAlign: 'center'}}
+                />
             </ListItem>
         )});
 
