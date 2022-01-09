@@ -18,7 +18,7 @@ const views: View[] = [
 const NavigationBar: FC = () => {
 
     return (
-        <AppBar position="static" style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '10px'}}>
+        <AppBar position="static" style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingLeft: '10px', height: '6vh'}}>
             <Typography
                 variant="h5"
                 noWrap
