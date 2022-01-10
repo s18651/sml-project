@@ -19,10 +19,10 @@ for text in df_funfacts.values:
             translation = translator.translate(text, dest="pl")
             translation_text = translation.text
             translation_text = translation_text.replace('\r', '')
-            string_of_funfacts_pl += re.sub('\n.\)', ' .\)', translation_text.strip())
+            string_of_funfacts_pl += re.sub('\n.\)', '', translation_text.strip())
 
 list_of_funfacts_pl = string_of_funfacts_pl.split('\n')
 
 with open(cleaned_data_file, "w", encoding="utf-8") as file:
     for text in list_of_funfacts_pl:
-        file.write(text.replace('​', '') + "\n")
+        file.write(text.strip().replace('​', '') + "\n")
