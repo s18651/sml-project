@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from googletrans import Translator, constants
+from googletrans import Translator
 import re
 
 pd.set_option('display.max_columns', None)
