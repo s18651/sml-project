@@ -1,20 +1,24 @@
 import React, {useEffect, useState} from "react";
 import {FC} from "react";
 import { DatePicker } from '@mui/lab';
-import {TextField, Typography} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, TextField, Typography} from "@mui/material";
 
 interface SidePanelProps {
     setYear: Function,
     minYear: number,
     maxYear: number,
+    setNext?: Function,
+    nextOptions?: {id: string, label: string}[],
+    chosenNext?: string,
+    nextLabel?: string,
 }
 
-const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear}) => {
+const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear, setNext, nextOptions, chosenNext, nextLabel}) => {
     const [date, setDate] = useState<Date|null>(null);
 
     useEffect(() => {
         setYear(date === null ? null : date.getFullYear());
-    }, [date])
+    }, [date, setYear])
 
     return <div style={{
         display: 'flex',
@@ -34,8 +38,29 @@ const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear}) => {
           maxDate={new Date(maxYear+'-01-01')}
           value={date}
           onChange={(date) => setDate(date)}
-          renderInput={(params) => <TextField {...params} helperText={null} />}
+          renderInput={(params) => <TextField {...params} style={{width: '50%'}} helperText={null} />}
         />
+        {setNext && nextOptions && nextLabel ?
+            <>
+                <Typography variant="h5" style={{textAlign: 'center', marginBottom: '50px', marginTop: '50px'}}>
+                    {nextLabel}
+                </Typography>
+                <Select
+                    labelId="demo-simple-select-label"
+                    style={{width: '50%'}}
+                    value={chosenNext}
+                    onChange={({target: {value}}) => {setNext(value)}}
+                    displayEmpty
+                >
+                    <MenuItem disabled value="">
+                        <em>Wybierz kontynent</em>
+                    </MenuItem>
+                    {nextOptions.map(option =>
+                        <MenuItem key={option.id} value={option.id}>{option.label}</MenuItem>
+                    )}
+                </Select>
+            </>
+        :null}
     </div>
 };
 
