@@ -132,4 +132,8 @@ data/raw
 
 .idea/
 
+# name of virtual env
 sml-project
+
+#raw data from kaggle
+data/raw

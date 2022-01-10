@@ -2,7 +2,8 @@ import kaggle
 import os
 
 dataset = 'manchunhui/world-development-indicators'
-raw_data_folder = './data/raw'
+dataset_country2continents = 'statchaitya/country-to-continent'
+raw_data_folder = '../data/raw'
 number_of_raw_data_files = 0
 
 for dirname, _, filenames in os.walk(raw_data_folder):
@@ -18,5 +19,8 @@ if number_of_raw_data_files < 1:
     # remove unnecessary files
     os.remove(os.path.join(raw_data_folder, 'WDIData_T.csv'))
     os.remove(os.path.join(raw_data_folder, 'WDIrevisions.xls'))
+
+kaggle.api.authenticate()
+kaggle.api.dataset_download_files(dataset_country2continents, path=raw_data_folder, unzip=True)
 
 
