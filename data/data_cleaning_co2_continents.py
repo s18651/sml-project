@@ -22,25 +22,14 @@ regions_mapping = {
 df_data = pd.read_csv(data_file)
 df_data_countries = pd.read_csv(data_file_countries)
 
-#print(df_data.columns)
-#print(df_data_countries.columns)
-#print(df_data_countries['Region'].isnull().values)
-
-#print(df_data_countries['Region'].value_counts())
-
 df_data_countries['Region Index'] = df_data_countries['Region'].map(regions_mapping)
-
-#print(df_data_countries.sample(1))
-#print(df_data_countries['Region'].value_counts())
 
 useful_columns = ['Country Code', 'Short Name', 'Region', 'Region Index']
 df_data_countries_cleaned = df_data_countries[useful_columns]
 
-#print(df_data_countries_cleaned[df_data_countries_cleaned.isna().any(axis=1)])
 df_data_countries_cleaned = df_data_countries_cleaned[df_data_countries_cleaned['Region'].notna()]
 df_data_countries_cleaned = df_data_countries_cleaned[df_data_countries_cleaned['Region Index'].notna()]
-#print('After dropping values')
-#print(df_data_countries_cleaned[df_data_countries_cleaned.isna().any(axis=1)])
+
 df_data_countries_cleaned['Region Index'] = df_data_countries_cleaned['Region Index'].astype(int)
 
 df_co2 = df_data[df_data['Indicator Code'] == co2_indicator]
