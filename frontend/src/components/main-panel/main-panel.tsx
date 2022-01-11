@@ -14,7 +14,7 @@ interface MainPanelProps {
 }
 
 const MainPanel: FC<MainPanelProps> = ({year, data, prediction, country}) => {
-    if(year === null) {
+    if(year === null || data.length === 0) {
         return (
             <div style={{
                 width: '70vw',

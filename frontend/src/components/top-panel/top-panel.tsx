@@ -27,8 +27,8 @@ const TopPanel: FC<TopPanelProps> = ({data}) => {
             </ListItem>
         )});
 
-    return <List style={{display: 'flex', flexDirection: 'row', padding: 0, height: '10vh'}}>
-        {cards}
+    return <List style={{display: 'flex', flexDirection: 'row', padding: 0, height: '10vh', justifyContent: 'center'}}>
+        {data.length > 0 ? cards : <ListItem style={{maxWidth: '390px', textAlign: 'center'}}>Wybierz odpowiednie dane aby wyświetlić zawartość</ListItem>}
     </List>
 };
 
