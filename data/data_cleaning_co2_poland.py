@@ -17,8 +17,6 @@ df_poland_co2 = df_poland[df_poland['Indicator Code'] == co2_indicator]
 if df_poland_co2.shape[0] != 1:
     raise Exception('CO2 Indicator has not been picked correctly!')
 
-print('We can start cleaning')
-
 df_poland_co2.dropna(axis=1, inplace=True)
 
 columns_to_drop = ['Country Name', 'Country Code', 'Indicator Name', 'Indicator Code']
@@ -26,7 +24,10 @@ df_poland_co2.drop(columns_to_drop, axis=1, inplace=True)
 if df_poland_co2.shape[1] < 1:
     raise Exception('Data has not enough columns (0)!')
 
-print(df_poland_co2)
+df_poland_co2['year'] = 'emission'
+cols = df_poland_co2.columns.tolist()
+cols = cols[-1:] + cols[:-1]
+df_poland_co2 = df_poland_co2[cols]
 
 df_poland_co2.to_csv(cleaned_data_file, index=None)
 
