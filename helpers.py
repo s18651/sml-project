@@ -17,10 +17,10 @@ def poland_raw_data():
 
 def continents_raw_data(continentId):
     data = pd.read_csv('data/cleaned/df_continents_co2_grouped_by_continent.csv', index_col=0, header=None).T
-    countryValues = data[continentId+'.0']
+    continentValues = data[continentId+'.0']
     years = data['RegionIndex']
     mapped_data = np.array([])
-    for countryValue, year in zip(countryValues, years):
+    for countryValue, year in zip(continentValues, years):
         mapped_item = {'year': int(year), 'emission': countryValue}
         mapped_data = np.append(mapped_data, mapped_item)
 
