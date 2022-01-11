@@ -60,7 +60,9 @@ final_regions_mapping = {
     'North & Central America': 4,
     'South America': 5
 }
+
 df_regions_dict = pd.DataFrame(final_regions_mapping, index=[]).T.reset_index()
+df_regions_dict['Index'] = df_regions_dict.index
+df_regions_dict.rename(columns={'index':'Continent'}, inplace=True)
 
-df_regions_dict.to_csv(cleaned_data_file_continents_dict)
-
+df_regions_dict.to_csv(cleaned_data_file_continents_dict, index=None)
