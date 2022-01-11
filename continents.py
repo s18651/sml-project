@@ -1,5 +1,5 @@
 from flask_restful import Resource, Api
-from helpers import import_poland_data
+from helpers import continents_raw_data
 import pickle
 import numpy as np
 import sklearn
@@ -7,7 +7,7 @@ from flask import request
 
 class ContinentsRaw(Resource):
     def get(self, continentId):
-        return import_poland_data()
+        return continents_raw_data(continentId)
 
 class ContinentsPredict(Resource):
     def get(self, continentId, year):

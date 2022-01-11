@@ -1,5 +1,5 @@
 from flask_restful import Resource, Api
-from helpers import import_poland_data
+from helpers import poland_raw_data
 import pickle
 import numpy as np
 import sklearn
@@ -7,7 +7,7 @@ from flask import request
 
 class PolandRaw(Resource):
     def get(self):
-        return import_poland_data()
+        return poland_raw_data()
 
 class PolandPredict(Resource):
     def get(self, year):
