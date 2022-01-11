@@ -46,6 +46,7 @@ const Continents: FC = () => {
                 nextOptions={continents}
                 chosenNext={continentId}
                 nextLabel={"Wybierz kontynent aby przeprowadzić predykcję"}
+                nextType={"kontynent"}
             />
             <MainPanel year={year} data={data} prediction={prediction} country={continentId ? continents[parseInt(continentId)].label : ''}/>
         </div>

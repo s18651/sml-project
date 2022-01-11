@@ -11,9 +11,10 @@ interface SidePanelProps {
     nextOptions?: {id: string, label: string}[],
     chosenNext?: string,
     nextLabel?: string,
+    nextType?: string,
 }
 
-const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear, setNext, nextOptions, chosenNext, nextLabel}) => {
+const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear, setNext, nextOptions, chosenNext, nextLabel, nextType}) => {
     const [date, setDate] = useState<Date|null>(null);
 
     useEffect(() => {
@@ -53,7 +54,7 @@ const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear, setNext, next
                     displayEmpty
                 >
                     <MenuItem disabled value="">
-                        <em>Wybierz kontynent</em>
+                        <em>Wybierz {nextType}</em>
                     </MenuItem>
                     {nextOptions.map(option =>
                         <MenuItem key={option.id} value={option.id}>{option.label}</MenuItem>
