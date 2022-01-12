@@ -56,11 +56,10 @@ const Continents: FC = () => {
 export default Continents;
 
 const continents = [
-    {id: '0', label: 'Europa'},
+    {id: '0', label: 'Afryka'},
     {id: '1', label: 'Azja'},
-    {id: '2', label: 'Afryka'},
-    {id: '3', label: 'Australia i Oceania'},
-    {id: '4', label: 'Ameryka Północna'},
+    {id: '2', label: 'Europa'},
+    {id: '3', label: 'Oceania'},
+    {id: '4', label: 'Ameryka Północna i Centralna'},
     {id: '5', label: 'Ameryka Południowa'},
-    {id: '6', label: 'Antarktyda'},
 ];
