@@ -26,4 +26,13 @@ def continents_raw_data(continentId):
 
     return mapped_data.tolist()
 
+def countries_raw_data(countryId):
+    data = pd.read_csv('data/cleaned/df_continents_co2.csv', index_col=46, header=None).T
+    country_values = data[countryId][3:]
+    years = data['Country Index'][3:]
+    mapped_data = np.array([])
+    for countryValue, year in zip(country_values, years):
+        mapped_item = {'year': int(year), 'emission': countryValue}
+        mapped_data = np.append(mapped_data, mapped_item)
 
+    return mapped_data.tolist()
