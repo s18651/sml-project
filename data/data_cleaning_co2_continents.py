@@ -11,16 +11,6 @@ countries_dict = os.path.join('cleaned', 'df_countries_encoding_dict.csv')
 co2_indicator = 'EN.ATM.NOXE.KT.CE'
 
 regions_mapping = {
-    'Europe & Central Asia': 0,
-    'Sub-Saharan Africa': 1,
-    'Latin America & Caribbean': 2,
-    'East Asia & Pacific': 3,
-    'Middle East & North Africa': 4,
-    'South Asia': 5,
-    'North America': 6
-}
-
-regions_mapping_new = {
     'Africa': 0,
     'Asia': 1,
     'Europe': 2,
@@ -30,9 +20,7 @@ regions_mapping_new = {
 
 df_data = pd.read_csv(data_file)
 df_data_countries = pd.read_csv(data_file_countries, encoding = "ISO-8859-1")
-df_data_countries['Region Index'] = df_data_countries['continent'].map(regions_mapping_new)
-
-
+df_data_countries['Region Index'] = df_data_countries['continent'].map(regions_mapping)
 df_data_countries.loc[df_data_countries.sub_region == 'South America', ['Region Index']] = 5
 
 useful_columns = ['country', 'continent', 'code_3', 'Region Index']
@@ -41,7 +29,7 @@ df_data_countries.rename(columns={'code_3':'Country Code'}, inplace=True)
 
 df_data_countries = df_data_countries[df_data_countries['Region Index'].notna()]
 df_data_countries['Region Index'] = df_data_countries['Region Index'].astype(int)
-#
+
 df_co2 = df_data[df_data['Indicator Code'] == co2_indicator]
 
 df_merged = pd.merge(
@@ -51,7 +39,7 @@ df_merged = pd.merge(
 )
 
 df_merged['Country Name'] = df_merged['Country Name'].replace('\"', '')
-print(df_merged['Country Name'])
+
 # drop unnecessary columns
 columns_to_drop = ['country', 'Country Code', 'Indicator Name', 'Indicator Code']
 df_merged.drop(columns=columns_to_drop, inplace=True)
@@ -64,7 +52,6 @@ df_merged.dropna(thresh=5, inplace=True)
 # these columns have to be removed before training
 df_merged.rename(columns={'continent': 'Continent'}, inplace=True)
 
-
 le = LabelEncoder()
 encoded_country = le.fit_transform(df_merged['Country Name'])
 df_merged['Country Index'] = encoded_country
@@ -75,7 +62,3 @@ df_countries_encoded.rename(columns={0: 'Country Name'}, inplace=True)
 
 df_merged.to_csv(cleaned_data_file, index=None)
 df_countries_encoded.to_csv(countries_dict, index=None)
-
-
-
-
