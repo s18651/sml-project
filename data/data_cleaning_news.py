@@ -16,11 +16,11 @@ for text in df_funfacts.values:
     if isinstance(text, str):
         if 100 < len(text) < 500:
             translation = translator.translate(text, dest="pl")
-            translation_text = text
+            translation_text = translation.text
             translation_text_r = translation_text.replace('\r', '')
             string_of_funfacts_pl += translation_text_r.strip()
 
-list_of_funfacts_pl = list(filter(None, string_of_funfacts_pl.split('. ')))
+list_of_funfacts_pl = list(filter(None, string_of_funfacts_pl.split('.')))
 
 for idx, item in enumerate(list_of_funfacts_pl):
     list_of_funfacts_pl[idx] = list_of_funfacts_pl[idx].replace('.', '. ')
@@ -28,7 +28,8 @@ for idx, item in enumerate(list_of_funfacts_pl):
     if not list_of_funfacts_pl[idx].endswith('.'):
         list_of_funfacts_pl[idx] += '.'
     list_of_funfacts_pl[idx] = list_of_funfacts_pl[idx].replace('  ', ' ')
-    if len(list_of_funfacts_pl[idx].strip()) < 5:
+    if len(list_of_funfacts_pl[idx].strip()) < 12:
+        print(len(list_of_funfacts_pl[idx].strip()))
         del list_of_funfacts_pl[idx]
 
 with open(cleaned_data_file, "w", encoding="utf-8") as file:
