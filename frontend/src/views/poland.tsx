@@ -17,7 +17,7 @@ export interface Prediction {
 const Poland: FC = () => {
     const [year, setYear] = useState<number|null>(null);
     const [data, setData] = useState<EmissionData[]>([]);
-    const [prediction, setPrediction] = useState<Prediction>({emission: 21370});
+    const [prediction, setPrediction] = useState<Prediction>({emission: 0});
 
     useEffect(() => {
         async function fetchData () {
