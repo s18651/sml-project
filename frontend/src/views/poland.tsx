@@ -22,7 +22,8 @@ const Poland: FC = () => {
     useEffect(() => {
         async function fetchData () {
             const response = await fetchPolandPredict(year!);
-            setPrediction({emission: await response.json()});
+            const emission = await response.json();
+            setPrediction({emission: emission < 0 ? 0 : emission});
         }
         
         if(year) {
