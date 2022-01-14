@@ -58,6 +58,8 @@ df_merged['Country Index'] = encoded_country
 df_countries_encoded = pd.DataFrame(le.inverse_transform(encoded_country))
 df_countries_encoded['Country Index'] = encoded_country
 
+df_merged.fillna(method='ffill', axis=0, inplace=True)
+
 df_countries_encoded.rename(columns={0: 'Country Name'}, inplace=True)
 
 df_merged.to_csv(cleaned_data_file, index=None)
