@@ -1,11 +1,15 @@
 import React from "react";
 import {FC} from "react";
 import {
+    Area,
     Bar,
     CartesianGrid,
     Cell,
     ComposedChart,
+    Legend,
+    Line,
     ResponsiveContainer,
+    Tooltip,
     XAxis,
     YAxis
 } from "recharts";
@@ -13,12 +17,12 @@ import {EmissionData} from "../../views/poland";
 
 interface ChartProps {
     data: EmissionData[],
-    chosenYear: number|null,
+    chosenYear: number,
     predictedEmission: number|null,
 }
 
 const Chart: FC<ChartProps> = ({data, chosenYear, predictedEmission}) => {
-    const preparedData: EmissionData[] = (!!chosenYear && chosenYear > data[data.length-1].year) ? [...data, {year: chosenYear!, emission: predictedEmission!}] : data;
+    const preparedData: EmissionData[] = chosenYear > data[data.length-1].year ? [...data, {year: chosenYear, emission: predictedEmission!}] : data;
     return (
       // @ts-ignore
       <ResponsiveContainer style={{width: '70vw', height: '84vh'}}>
