@@ -14,7 +14,7 @@ interface MainPanelProps {
 }
 
 const MainPanel: FC<MainPanelProps> = ({year, data, prediction, country}) => {
-    if(year === null || data.length === 0) {
+    if(data.length === 0) {
         return (
             <div style={{
                 width: '70vw',
@@ -32,9 +32,11 @@ const MainPanel: FC<MainPanelProps> = ({year, data, prediction, country}) => {
     return <div style={{width: '70vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
         <div style={{height: '20vh', display: 'flex', alignItems: 'center'}}>
             <Typography variant="h6">
+                { year && year > 1970 ? <>
                 W {country} w
-                <span style={{fontWeight: 'bold'}}> {year}</span> emisja CO2 wyniesie
-                <span style={{fontWeight: 'bold'}}> {parseFloat(prediction.emission as unknown as string).toFixed(2)}</span> ton CO2
+                <span style={{fontWeight: 'bold'}}> {year}</span> emisja CO2 {year! > 2012 ? 'wyniesie ' : 'wyniosła '}
+                <span style={{fontWeight: 'bold'}}>{parseFloat(prediction.emission as unknown as string).toFixed(2)}</span> ton CO2
+                </> : ''}
             </Typography>
         </div>
         <div style={{height: '64vh', width: '70vw'}}>

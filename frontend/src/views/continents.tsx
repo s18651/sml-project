@@ -11,12 +11,13 @@ const Continents: FC = () => {
     const [year, setYear] = useState<number|null>(null);
     const [continentId, setContinentId] = useState<string>('');
     const [data, setData] = useState<EmissionData[]>([]);
-    const [prediction, setPrediction] = useState<Prediction>({emission: 21370});
+    const [prediction, setPrediction] = useState<Prediction>({emission: 0});
 
     useEffect(() => {
         async function fetchData () {
             const response = await fetchContinentPredict(continentId!, year!);
-            setPrediction({emission: await response.json()});
+            const emission = await response.json();
+            setPrediction({emission: emission < 0 ? 0 : emission});
         }
         
         if(year && continentId) {
@@ -48,7 +49,12 @@ const Continents: FC = () => {
                 nextLabel={"Wybierz kontynent aby przeprowadzić predykcję"}
                 nextType={"kontynent"}
             />
-            <MainPanel year={year} data={data} prediction={prediction} country={continentId ? continents[parseInt(continentId)].label : ''}/>
+            <MainPanel
+                year={year}
+                data={data}
+                prediction={prediction}
+                country={continentId ? continents.filter(continent => continent.id === continentId)[0].label : ''}
+            />
         </div>
     </div>
 }

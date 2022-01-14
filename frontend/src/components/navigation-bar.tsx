@@ -23,7 +23,7 @@ const NavigationBar: FC = () => {
                 variant="h5"
                 noWrap
             >
-                Emission Study
+                Badanie emisji CO2
             </Typography>
             <Box style={{display: 'flex', marginLeft: '3%', height: '100%'}}>
                 {views.map(view => (
