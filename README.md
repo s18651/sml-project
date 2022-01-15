@@ -10,7 +10,7 @@
 1. [x] CO2 statistics and predictions for Poland
 2. [x] CO2 statistics and predictions for any country
 3. [x] CO2 statistics and predictions per continent
-4. [] CO2 predictions for the world based on environment and ecomonic indicators (50)
+4. [ ] CO2 predictions for the world based on environment and ecomonic indicators (50)
 5. [x] Random environment and economic news (partly automatically translated)
 6. [x] Showing differences between years for CO2 emission for any country
 
