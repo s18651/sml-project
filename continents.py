@@ -11,7 +11,6 @@ class ContinentsRaw(Resource):
 
 class ContinentsPredict(Resource):
     def get(self, continentId, year):
-        loaded_model = pickle.load(open('models/poland/poland_model.sv', 'rb'))
-        result = loaded_model.predict(np.array(year).reshape(-1,1))
-        # print(loaded_model.predict_proba(np.array(year).reshape(-1, 1)))
-        return result[0][0]
+        loaded_model = pickle.load(open('models/continents/continents_model_region_'+continentId+'.sv', 'rb'))
+        result = loaded_model.predict(np.array([year]).reshape(-1,1))
+        return float(result[0])
