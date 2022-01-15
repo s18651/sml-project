@@ -26,6 +26,12 @@ const Continents: FC = () => {
     }, [year, continentId])
 
     useEffect(() => {
+        if(year! <= 2012 && year! >= 1970 && data.length > 0) {
+            setPrediction(data.filter(item => item.year === year)[0]);
+        }
+    }, [data, year, prediction]);
+
+    useEffect(() => {
         async function fetchData () {
             const response = await fetchContinentRawData(continentId!);
             setData(await response.json());
@@ -37,7 +43,10 @@ const Continents: FC = () => {
     }, [continentId]);
 
     return <div style={{height: '94vh'}}>
-        <TopPanel data={data}/>
+        <TopPanel
+            data={data}
+            firstName={continentId ? continents.filter(continent => continent.id === continentId)[0].label : ''}
+        />
         <div style={{display: 'flex', height: '84vh', borderTop: '1px solid lightgrey'}}>
             <SidePanel
                 setYear={setYear}
