@@ -5,7 +5,7 @@ import {
     BarChart,
     CartesianGrid,
     Cell,
-    ComposedChart, Legend,
+    Legend,
     ResponsiveContainer,
     XAxis,
     YAxis
@@ -57,10 +57,12 @@ const Chart: FC<ChartProps> = ({data, chosenYear, predictedEmission, secondData,
             {/*<Bar dataKey="emission" label="emisja" barSize={20} fill="#413ea0" />*/}
             <Bar dataKey="emission" label="siema" fill="#413ea0" name={firstName}>
                 {
-                    preparedData.map((entry, index) => (
+                    preparedData.map((entry: any, index) => (
                         <Cell
                             key={`cell-${index}`}
-                            fill={entry.year === chosenYear ? '#F68E5F' : '#413ea0'}
+                            fill={entry.year === chosenYear ? (secondData.length > 0 ? 'white' : '#e59400') : '#413ea0'}
+                            strokeWidth={entry.year === chosenYear ? 3 : 0}
+                            stroke={entry.year === chosenYear ? (secondData.length > 0 ? '#413ea0' : '#e59400') : ""}
                         />
                     ))
                 }
@@ -68,8 +70,13 @@ const Chart: FC<ChartProps> = ({data, chosenYear, predictedEmission, secondData,
             {secondData.length > 0 &&
                 <Bar dataKey="emission2" fill="#A9815F" name={secondName}>
                     {
-                        preparedData.map((entry, index) => (
-                            <Cell key={`cell2-${index}`} fill={entry.year === chosenYear ? '#F68E5F' : '#e59400'} />
+                        preparedData.map((entry: any, index) => (
+                            <Cell
+                                key={`cell2-${index}`}
+                                fill={entry.year === chosenYear ? 'white' : '#e59400'}
+                                strokeWidth={entry.year === chosenYear ? 3 : 0}
+                                stroke={entry.year === chosenYear ? "#e59400" : ""}
+                            />
                         ))
                     }
                 </Bar>
