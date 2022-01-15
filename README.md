@@ -1,6 +1,6 @@
 # sml-project
 
-### Implementation of World CO2 Emissions Analysis using Flask
+### Implementation of World CO2 Emissions Analysis with Python and Machine Learning using Flask and Scikit-Learn for PJAIT course SML
 
 <br /><br />
 
@@ -8,13 +8,20 @@
 <hr>
 
 1. [x] CO2 statistics and predictions for Poland
-2. [ ] CO2 statistics and predictions for any country
+2. [x] CO2 statistics for any country
 3. [ ] CO2 statistics and predictions per continent
-4. [ ] CO2 predictions for the world based on environment and ecomonic indicators (50)
-5. [x] Random environment and economic news (partly automatically translated)
-6. [x] Showing differences between years for CO2 emission for any country
+4. [x] Random environment and economic news (partly automatically translated)
+5. [x] Showing differences between years for CO2 emission for any country
+6. [ ] Possility of CO2 emission comparison between countries
 
-<br />
+<br /><br />
+
+## Future ideas
+<hr>
+
+1. CO2 predictions for the world based on 50 environment and ecomonic indicators
+
+<br /><br />
 
 ## Contibutors
 <hr>
@@ -32,7 +39,7 @@
 3. Go to project root and install required packages <br />
 ```pip install -r requirements.txt```
 
-<br />
+<br /><br />
 
 ## Built with
 <hr>
@@ -42,7 +49,7 @@
 * Front-End: **React**
 * Machine Learning: **Scikit-Learn, Pandas**
 
-<br />
+<br /><br />
 
 ## Used data
 <hr>
