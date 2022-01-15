@@ -55,7 +55,7 @@ const Chart: FC<ChartProps> = ({data, chosenYear, predictedEmission, secondData,
             <Legend />
             {/*<Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" />*/}
             {/*<Bar dataKey="emission" label="emisja" barSize={20} fill="#413ea0" />*/}
-            <Bar dataKey="emission" label="siema" fill="#413ea0" name={firstName}>
+            <Bar dataKey="emission" fill="#413ea0" name={firstName}>
                 {
                     preparedData.map((entry: any, index) => (
                         <Cell

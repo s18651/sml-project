@@ -4,6 +4,7 @@ import { DatePicker } from '@mui/lab';
 import {FormControl, InputLabel, MenuItem, Select, TextField, Typography} from "@mui/material";
 
 interface SidePanelProps {
+    yearLabel?: string,
     setYear: Function,
     minYear: number,
     maxYear: number,
@@ -22,7 +23,8 @@ const SidePanel: FC<SidePanelProps> = ({
                                            setNext, nextOptions,
                                            chosenNext, nextLabel,
                                            nextType, secondNext = false,
-                                           setSecondNext, chosenSecondNext
+                                           setSecondNext, chosenSecondNext,
+                                           yearLabel=  'Wybierz rok aby przeprowadzić predykcję'
 }) => {
     const [date, setDate] = useState<Date|null>(null);
 
@@ -39,7 +41,7 @@ const SidePanel: FC<SidePanelProps> = ({
         borderRight: '1px solid lightgrey'
     }}>
         <Typography variant="h5" style={{textAlign: 'center', marginBottom: '50px'}}>
-            Wybierz rok aby przeprowadzić predykcję
+            {yearLabel}
         </Typography>
         <DatePicker
           views={['year']}

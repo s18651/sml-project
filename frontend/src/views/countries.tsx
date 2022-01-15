@@ -55,13 +55,14 @@ const Countries: FC = () => {
         />
         <div style={{display: 'flex', height: '84vh', borderTop: '1px solid lightgrey'}}>
             <SidePanel
+                yearLabel={"Wybierz rok aby porównać emisję"}
                 setYear={setYear}
                 minYear={1970}
                 maxYear={2012}
                 setNext={setCountryId}
                 nextOptions={countries}
                 chosenNext={countryId}
-                nextLabel={"Wybierz kraj aby przeprowadzić predykcję"}
+                nextLabel={"Wybierz kraj aby porównać emisję"}
                 nextType={"kraj"}
                 secondNext={true}
                 setSecondNext={setSecondCountryId}
