@@ -12,7 +12,7 @@
 3. [ ] CO2 statistics and predictions per continent
 4. [x] Random environment and economic news (partly automatically translated)
 5. [x] Showing differences between years for CO2 emission for any country
-6. [ ] Possility of CO2 emission comparison between countries
+6. [ ] Possibility of CO2 emission comparison between countries
 
 <br /><br />
 
