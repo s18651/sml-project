@@ -9,7 +9,9 @@ import {fetchCountryPredict, fetchCountryRawData} from "../http/countries";
 const Countries: FC = () => {
     const [year, setYear] = useState<number|null>(null);
     const [countryId, setCountryId] = useState<string>('');
+    const [secondCountryId, setSecondCountryId] = useState<string>('');
     const [data, setData] = useState<EmissionData[]>([]);
+    const [secondData, setSecondData] = useState<EmissionData[]>([]);
     const [prediction, setPrediction] = useState<Prediction>({emission: 0});
 
     useEffect(() => {
@@ -22,7 +24,7 @@ const Countries: FC = () => {
         if(year && countryId) {
             fetchData();
         }
-    }, [year, countryId])
+    }, [year, countryId, secondCountryId])
 
     useEffect(() => {
         async function fetchData () {
@@ -30,29 +32,49 @@ const Countries: FC = () => {
             setData(await response.json());
         }
 
+        async function fetchSecondData () {
+            const response = await fetchCountryRawData(secondCountryId!);
+            setSecondData(await response.json());
+        }
+
         if(countryId) {
             fetchData();
         }
-    }, [countryId]);
+
+        if(secondCountryId) {
+            fetchSecondData();
+        }
+    }, [countryId, secondCountryId]);
 
     return <div style={{height: '94vh'}}>
-        <TopPanel data={data}/>
+        <TopPanel
+            data={data}
+            secondData={secondData}
+            firstName={countryId ? countries.filter(country => country.id === countryId)[0].label : ''}
+            secondName={secondCountryId ? countries.filter(country => country.id === secondCountryId)[0].label : ''}
+        />
         <div style={{display: 'flex', height: '84vh', borderTop: '1px solid lightgrey'}}>
             <SidePanel
+                yearLabel={"Wybierz rok aby porównać emisję"}
                 setYear={setYear}
                 minYear={1970}
-                maxYear={2100}
+                maxYear={2012}
                 setNext={setCountryId}
                 nextOptions={countries}
                 chosenNext={countryId}
-                nextLabel={"Wybierz kraj aby przeprowadzić predykcję"}
+                nextLabel={"Wybierz kraj aby porównać emisję"}
                 nextType={"kraj"}
+                secondNext={true}
+                setSecondNext={setSecondCountryId}
+                chosenSecondNext={secondCountryId}
             />
             <MainPanel
                 year={year}
                 data={data}
                 prediction={prediction}
                 country={countryId ? countries.filter(country => country.id === countryId)[0].label : ''}
+                secondData={secondData}
+                secondCountry={secondCountryId ? countries.filter(country => country.id === secondCountryId)[0].label : ''}
             />
         </div>
     </div>

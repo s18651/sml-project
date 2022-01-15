@@ -21,9 +21,13 @@ const Poland: FC = () => {
 
     useEffect(() => {
         async function fetchData () {
-            const response = await fetchPolandPredict(year!);
-            const emission = await response.json();
-            setPrediction({emission: emission < 0 ? 0 : emission});
+            if(year! <= 2012 && year! >= 1970) {
+                setPrediction(data.filter(item => item.year === year)[0]);
+            } else {
+                const response = await fetchPolandPredict(year!);
+                const emission = await response.json();
+                setPrediction({emission: emission < 0 ? 0 : emission});
+            }
         }
         
         if(year) {
@@ -41,10 +45,10 @@ const Poland: FC = () => {
     }, []);
 
     return <div style={{height: '94vh'}}>
-        <TopPanel data={data}/>
+        <TopPanel data={data} firstName={"Polska"}/>
         <div style={{display: 'flex', height: '84vh', borderTop: '1px solid lightgrey'}}>
             <SidePanel setYear={setYear} minYear={1970} maxYear={2100} />
-            <MainPanel year={year} data={data} prediction={prediction} country={"Polsce"}/>
+            <MainPanel year={year} data={data} prediction={prediction} country={"Polska"}/>
         </div>
     </div>
 }

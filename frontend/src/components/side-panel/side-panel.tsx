@@ -4,6 +4,7 @@ import { DatePicker } from '@mui/lab';
 import {FormControl, InputLabel, MenuItem, Select, TextField, Typography} from "@mui/material";
 
 interface SidePanelProps {
+    yearLabel?: string,
     setYear: Function,
     minYear: number,
     maxYear: number,
@@ -12,9 +13,19 @@ interface SidePanelProps {
     chosenNext?: string,
     nextLabel?: string,
     nextType?: string,
+    secondNext?: boolean,
+    setSecondNext?: Function,
+    chosenSecondNext?: string,
 }
 
-const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear, setNext, nextOptions, chosenNext, nextLabel, nextType}) => {
+const SidePanel: FC<SidePanelProps> = ({
+                                           setYear, minYear, maxYear,
+                                           setNext, nextOptions,
+                                           chosenNext, nextLabel,
+                                           nextType, secondNext = false,
+                                           setSecondNext, chosenSecondNext,
+                                           yearLabel=  'Wybierz rok aby przeprowadzić predykcję'
+}) => {
     const [date, setDate] = useState<Date|null>(null);
 
     useEffect(() => {
@@ -30,7 +41,7 @@ const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear, setNext, next
         borderRight: '1px solid lightgrey'
     }}>
         <Typography variant="h5" style={{textAlign: 'center', marginBottom: '50px'}}>
-            Wybierz rok aby przeprowadzić predykcję
+            {yearLabel}
         </Typography>
         <DatePicker
           views={['year']}
@@ -51,6 +62,27 @@ const SidePanel: FC<SidePanelProps> = ({setYear, minYear, maxYear, setNext, next
                     style={{width: '50%'}}
                     value={chosenNext}
                     onChange={({target: {value}}) => {setNext(value)}}
+                    displayEmpty
+                >
+                    <MenuItem disabled value="">
+                        <em>Wybierz {nextType}</em>
+                    </MenuItem>
+                    {nextOptions.map(option =>
+                        <MenuItem key={option.id} value={option.id}>{option.label}</MenuItem>
+                    )}
+                </Select>
+            </>
+        :null}
+        {setNext && nextOptions && nextLabel && secondNext ?
+            <>
+                <Typography variant="h5" style={{textAlign: 'center', marginBottom: '50px', marginTop: '50px'}}>
+                    {nextLabel}
+                </Typography>
+                <Select
+                    labelId="demo-simple-select-label"
+                    style={{width: '50%'}}
+                    value={chosenSecondNext}
+                    onChange={({target: {value}}) => {setSecondNext!(value)}}
                     displayEmpty
                 >
                     <MenuItem disabled value="">
