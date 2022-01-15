@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 from sklearn.preprocessing import LabelEncoder
+from googletrans import Translator
 
 pd.set_option('display.max_columns', None)
 
@@ -8,6 +9,7 @@ data_file = os.path.join(os.path.join('raw', 'WDI_csv'), 'WDIData.csv')
 data_file_countries = os.path.join('raw', 'countryContinent.csv')
 cleaned_data_file = os.path.join('cleaned', 'df_continents_co2.csv')
 countries_dict = os.path.join('cleaned', 'df_countries_encoding_dict.csv')
+countries_dict_pl = os.path.join('cleaned', 'df_countries_encoding_dict_pl.csv')
 co2_indicator = 'EN.ATM.NOXE.KT.CE'
 
 regions_mapping = {
@@ -64,3 +66,18 @@ df_countries_encoded.rename(columns={0: 'Country Name'}, inplace=True)
 
 df_merged.to_csv(cleaned_data_file, index=None)
 df_countries_encoded.to_csv(countries_dict, index=None)
+
+df_countries_encoded_translated = df_countries_encoded.copy()
+translator = Translator()
+
+
+def translate(x):
+    translated = translator.translate(x, dest="pl").text
+    print(translated)
+    return translated
+
+
+df_countries_encoded_translated['Country Name'] = df_countries_encoded_translated['Country Name'].apply(lambda x: translate(x))
+print(df_countries_encoded_translated)
+
+df_countries_encoded_translated.to_csv(countries_dict_pl, index=None)
